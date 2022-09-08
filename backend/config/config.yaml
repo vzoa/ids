@@ -1,0 +1,10 @@
+# default storage is a local sqlite database. if you want to configure something else, please see an example below and adapt it to your needs
+storage:
+  enabled: false
+
+# default set of plugins, add your own if you want to enable more
+plugins:
+  atis:
+    repository: https://github.com/vzoa/ids-plugins.git
+    enabled_modules:
+      - atis

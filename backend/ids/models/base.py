@@ -1,6 +1,6 @@
 from peewee import Model, ModelSelect
 
-import storage.db
+import ids.storage.db
 
 
 class Base(Model):
@@ -13,5 +13,5 @@ class Base(Model):
         return response
 
     class Meta:
-        database = storage.db.db
+        database = ids.storage.db.db
     pass

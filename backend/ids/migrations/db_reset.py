@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-import inspect
 import json
 import os.path
 
-from modules.atis.models.atis import Atis
-from models.field import Field
-from storage.db import db
+from ids.models.atis import Atis
+from ids.models.field import Field
+from ids.storage.db import db
 
 
 def find_all_models():

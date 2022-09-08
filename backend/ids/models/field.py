@@ -1,5 +1,5 @@
-from models.base import Base
-from peewee import CharField, UUIDField
+from ids.models.base import Base
+from peewee import CharField
 
 
 class Field(Base):
