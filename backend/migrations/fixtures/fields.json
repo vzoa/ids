@@ -1,0 +1,14 @@
+[
+  {
+    "icao": "KSFO",
+    "name": "San Francisco International"
+  },
+  {
+    "icao": "KSJC",
+    "name": "San Jose International"
+  },
+  {
+    "icao": "KOAK",
+    "name": "Oakland International"
+  }
+]
