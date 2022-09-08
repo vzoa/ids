@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 
-from ids.helpers.resource import wrap_standard_error, wrap_result_set, wrap_result_single
-from ids.models.field import Field
+from helpers.resource import wrap_standard_error, wrap_result_set, wrap_result_single
+from models.field import Field
 
 fields_resource = Blueprint(
     'fields_resource',

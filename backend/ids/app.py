@@ -1,7 +1,7 @@
 from flask import Flask
 
-from ids.resources.fields import fields_resource
-from ids.storage import db
+from resources.fields import fields_resource
+from storage import db
 
 app = Flask(__name__)
 app.register_blueprint(fields_resource)

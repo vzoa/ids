@@ -1,4 +1,4 @@
-from ids.models.base import Base
+from models.base import Base
 from peewee import CharField
 
 

@@ -1,7 +1,7 @@
 from peewee import ForeignKeyField, UUIDField, CharField
 
-from ids.models.base import Base
-from ids.models.field import Field
+from models.base import Base
+from models.field import Field
 
 
 class Atis(Base):
