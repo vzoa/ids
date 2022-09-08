@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import importlib
+import inspect
 import json
 import os.path
 
@@ -8,10 +10,13 @@ from ids.storage.db import db
 
 
 def find_all_models():
-    pass
+    for file in os.scandir(os.path.dirname(__file__) + "/../models/"):
+        for name, cls in inspect.getmembers(importlib.import_module(f"models.{file}"), inspect.isclass):
+            print(f"found class {cls}")
 
 
 def reset():
+    find_all_models()
     tables = [Atis, Field]
     for table in tables:
         if db.table_exists(table):

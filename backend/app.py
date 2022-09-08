@@ -1,6 +1,6 @@
 from flask import Flask
 
-from ids.resources import fields_resource
+from ids.resources.fields import fields_resource
 from ids.storage import db
 
 app = Flask(__name__)
