@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    build: ./ids
+    build: .
     command: python manage.py run -h 0.0.0.0
     volumes:
       - ./ids/:/usr/src/app/

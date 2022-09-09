@@ -1,4 +1,4 @@
-ids/var/*
+var/*
 venv/*
 __pycache__
 .idea/
