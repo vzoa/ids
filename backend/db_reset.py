@@ -1,7 +1,12 @@
+#!/usr/bin/python
+# This file is built so that you can quickly recreate a local database.
+# WARNING: It will destroy any database it touches.
+import getopt
 import importlib
 import inspect
 import json
 import os.path
+import sys
 from typing import List, Type
 
 import models.base
@@ -23,21 +28,40 @@ def find_all_models() -> List[Type[models.base.Base]]:
     return list(classes)
 
 
-def reset():
+def load_fixtures_for_table(table):
+    print("Loading fixtures because '-f' was provided")
+    fixture_path = file_dir + f"/migrations/fixtures/{str(table.__name__).lower()}.json"
+    if os.path.exists(fixture_path):
+        print(f"Populating fixtures for {table}")
+        with open(f"{fixture_path}") as fixture_data:
+            for entry in json.load(fixture_data):
+                table.create(**entry).save()
+
+
+def reset(load_fixtures=False):
     tables = find_all_models()
-    print(f"found tables to prep for {tables}")
+    print(f"Found tables to prep for {tables}")
     for table in tables:
         if db.table_exists(table):
-            print(f"Resetting table {table}")
+            print(f"Dropping {table}")
             db.drop_tables([table])
+            print(f"Creating {table}")
             db.create_tables([table])
 
-        fixture_path = file_dir + f"/migrations/fixtures/{str(table.__name__).lower()}.json"
-        if os.path.exists(fixture_path):
-            print(f"Populating fixtures for {table}")
-            with open(f"{fixture_path}") as fixture_data:
-                for entry in json.load(fixture_data):
-                    table.create(**entry).save()
+        if load_fixtures:
+            load_fixtures_for_table(table)
 
 
-reset()
+def main(argv):
+    try:
+        opts, args = getopt.getopt(argv, "l")
+    except getopt.GetoptError:
+        print("db_reset.py")
+        print("  -l    Loads all available fixtures.")
+        sys.exit(2)
+
+    reset(("-l", "") in opts)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
