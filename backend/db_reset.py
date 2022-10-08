@@ -29,7 +29,7 @@ def find_all_models() -> List[Type[models.base.Base]]:
 
 
 def load_fixtures_for_table(table):
-    print("Loading fixtures because '-f' was provided")
+    print("Loading fixtures because '-l' was provided")
     fixture_path = file_dir + f"/migrations/fixtures/{str(table.__name__).lower()}.json"
     if os.path.exists(fixture_path):
         print(f"Populating fixtures for {table}")
@@ -45,8 +45,8 @@ def reset(load_fixtures=False):
         if db.table_exists(table):
             print(f"Dropping {table}")
             db.drop_tables([table])
-            print(f"Creating {table}")
-            db.create_tables([table])
+        print(f"Creating {table}")
+        db.create_tables([table])
 
         if load_fixtures:
             load_fixtures_for_table(table)
